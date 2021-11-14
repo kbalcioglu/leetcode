@@ -12,10 +12,10 @@ public class ListNodeUtils {
         while (expected != null) {
             if (result == null)
                 return false;
-            if (expected.getVal() != result.getVal())
+            if (expected.val != result.val)
                 return false;
-            expected = expected.getNext();
-            result = result.getNext();
+            expected = expected.next;
+            result = result.next;
         }
         return result == null;
     }
@@ -29,7 +29,7 @@ public class ListNodeUtils {
         for (int i = lastIndex; i >= 0; i--) {
             ListNode node = head;
             head = new ListNode(given.get(i));
-            head.setNext(node);
+            head.next = node;
         }
         return head;
     }
@@ -43,7 +43,7 @@ public class ListNodeUtils {
         for (int i = lastIndex; i >= 0; i--) {
             ListNode node = head;
             head = new ListNode(given[i]);
-            head.setNext(node);
+            head.next = node;
         }
         return head;
     }
@@ -56,9 +56,9 @@ public class ListNodeUtils {
         if (title != null && title.trim().length() > 0)
             System.out.println(title + " : ");
         while (head != null) {
-            System.out.print(head.getVal());
+            System.out.print(head.val);
             System.out.print(" --> ");
-            head = head.getNext();
+            head = head.next;
         }
         System.out.println("null");
     }
@@ -68,8 +68,8 @@ public class ListNodeUtils {
             return head;
         ListNode previous = null;
         while (head != null) {
-            ListNode next = head.getNext();
-            head.setNext(previous);
+            ListNode next = head.next;
+            head.next = previous;
             previous = head;
             head = next;
         }
