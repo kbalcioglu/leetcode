@@ -75,6 +75,7 @@ public class ListNodeUtils {
         }
         return previous;
     }
+
     public static int countListNode(ListNode head) {
         if (head == null)
             return 0;
@@ -84,5 +85,18 @@ public class ListNodeUtils {
             head = head.next;
         }
         return count;
+    }
+
+    public static ListNode getMiddleNode(ListNode head) {
+        if (head == null)
+            return head;
+        int count = ListNodeUtils.countListNode(head);
+        int index = 0;
+        ListNode pointer = head;
+        while (index < count / 2) {
+            pointer = pointer.next;
+            index++;
+        }
+        return pointer;
     }
 }
