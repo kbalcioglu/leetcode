@@ -1,9 +1,8 @@
 package com.solutions.leetcode;
 
+import com.solutions.leetcode.models.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.*;
 
 public class AddTwoNumbersTest {
     @Test
@@ -74,43 +73,43 @@ public class AddTwoNumbersTest {
     }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if (l1.val == 0 && l1.next == null) {
+        if (l1.getVal() == 0 && l1.getNext() == null) {
             return l2;
-        } else if (l2.val == 0 && l2.next == null) {
+        } else if (l2.getVal() == 0 && l2.getNext() == null) {
             return l1;
         }
         StringBuilder sb = new StringBuilder();
         int residual = 0;
         while (l1 != null && l2 != null) {
-            int val = l1.val + l2.val + residual;
+            int val = l1.getVal() + l2.getVal() + residual;
             residual = 0;
             if (val >= 10) {
                 residual = val / 10;
                 val = val - 10;
             }
             sb.insert(0, val);
-            l1 = l1.next;
-            l2 = l2.next;
+            l1 = l1.getNext();
+            l2 = l2.getNext();
         }
         while (l1 != null) {
-            int val = l1.val + residual;
+            int val = l1.getVal() + residual;
             residual = 0;
             if (val >= 10) {
                 residual = val / 10;
                 val = val - 10;
             }
             sb.insert(0, val);
-            l1 = l1.next;
+            l1 = l1.getNext();
         }
         while (l2 != null) {
-            int val = l2.val + residual;
+            int val = l2.getVal() + residual;
             residual = 0;
             if (val >= 10) {
                 residual = val / 10;
                 val = val - 10;
             }
             sb.insert(0, val);
-            l2 = l2.next;
+            l2 = l2.getNext();
         }
         if (residual > 0) {
             sb.insert(0, residual);
@@ -118,21 +117,4 @@ public class AddTwoNumbersTest {
         return generateListNodeStr(sb);
     }
 
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
 }
