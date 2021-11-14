@@ -15,22 +15,10 @@ public class ReverseLinkedList {
         ListNodeUtils.outputListNode(head,"given");
         ListNode expected = ListNodeUtils.generateListNode(expectedArray);
         ListNodeUtils.outputListNode(expected,"expected");
-        ListNode result = this.reverseList(head);
+        ListNode result = ListNodeUtils.reverseListNode(head);
         ListNodeUtils.outputListNode(result,"result");
         Assertions.assertTrue(ListNodeUtils.checkEqualsListNode(expected, result));
     }
 
-    public ListNode reverseList(ListNode head) {
-        if (head == null)
-            return head;
-        ListNode previous = null;
-        while (head != null) {
-            ListNode next = head.getNext();
-            head.setNext(previous);
-            previous = head;
-            head = next;
-        }
-        return previous;
-    }
 }
 
