@@ -99,6 +99,7 @@ public class ListNodeUtils {
         }
         return pointer;
     }
+
     public static ListNode appendValue(ListNode head, int new_data) {
         ListNode new_node = new ListNode(new_data);
         if (head == null) {
@@ -112,11 +113,29 @@ public class ListNodeUtils {
         last.next = new_node;
         return head;
     }
+
     public static ListNode appendListNode(ListNode head, ListNode other) {
-        while(other != null){
-            head = appendValue(head,other.val);
+        while (other != null) {
+            head = appendValue(head, other.val);
             other = other.next;
         }
+        return head;
+    }
+
+    /*public static ListNode insertAfter(ListNode node, int new_data) {
+        if (node == null) {
+            return node;
+        }
+        ListNode new_node = new ListNode(new_data);
+        new_node.next = node.next;
+        node.next = new_node;
+        return node;
+    }*/
+
+    public ListNode push(ListNode head, int new_data) {
+        ListNode new_node = new ListNode(new_data);
+        new_node.next = head;
+        head = new_node;
         return head;
     }
 }
