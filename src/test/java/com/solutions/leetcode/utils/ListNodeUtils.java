@@ -99,4 +99,24 @@ public class ListNodeUtils {
         }
         return pointer;
     }
+    public static ListNode appendValue(ListNode head, int new_data) {
+        ListNode new_node = new ListNode(new_data);
+        if (head == null) {
+            head = new ListNode(new_data);
+            return head;
+        }
+        new_node.next = null;
+        ListNode last = head;
+        while (last.next != null)
+            last = last.next;
+        last.next = new_node;
+        return head;
+    }
+    public static ListNode appendListNode(ListNode head, ListNode other) {
+        while(other != null){
+            head = appendValue(head,other.val);
+            other = other.next;
+        }
+        return head;
+    }
 }
