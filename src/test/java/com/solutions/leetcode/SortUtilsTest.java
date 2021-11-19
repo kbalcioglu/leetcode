@@ -1,8 +1,15 @@
 package com.solutions.leetcode;
 
+import com.solutions.leetcode.enums.SortType;
 import com.solutions.leetcode.utils.SortUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class SortUtilsTest {
 
@@ -182,5 +189,57 @@ public class SortUtilsTest {
         System.out.println("Result : ");
         displayArray(array);
         Assertions.assertArrayEquals(expected, array);
+    }
+
+    @Test
+    public void testCompare() {
+        try {
+            Thread.sleep(50);
+            int[] array = generateRandomArray(9000);
+            for (SortType sortType : SortType.values()) {
+                Thread.sleep(10);
+                int[] given = array;
+                long start = System.currentTimeMillis();
+                sortAsc(sortType, array);
+                long elapsed = System.currentTimeMillis() - start;
+                System.out.println(String.format("SortType : %s - elapsed : %s", sortType, elapsed));
+            }
+        } catch (Throwable th) {
+            System.out.println(th.getMessage());
+        }
+    }
+
+    private void sortAsc(SortType sortType, int[] array) {
+        switch (sortType) {
+            case BUBBLE:
+                SortUtils.bubbleSortAsc(array);
+                break;
+            case SELECTION:
+                SortUtils.selectionSortAsc(array);
+                break;
+            case INSERTION:
+                SortUtils.insertionSortAsc(array);
+                break;
+            case SHELL:
+                SortUtils.shellSortAsc(array);
+                break;
+            case MERGE:
+                SortUtils.mergeSortAsc(array);
+                break;
+            case QUICK:
+                SortUtils.quickSortAsc(array);
+                break;
+        }
+    }
+
+    private int[] generateRandomArray(int count) {
+        Random random = new Random();
+        int[] array = new int[count];
+        int i = 0;
+        while (i < count) {
+            int number = random.nextInt(Integer.MAX_VALUE - 0) + 0;
+            array[i++] = number;
+        }
+        return array;
     }
 }
