@@ -202,7 +202,15 @@ public class SortUtilsTest {
                 long start = System.currentTimeMillis();
                 sortAsc(sortType, array);
                 long elapsed = System.currentTimeMillis() - start;
-                System.out.println(String.format("SortType : %s - elapsed : %s", sortType, elapsed));
+                System.out.println(String.format("ASC SortType : %s - elapsed : %s", sortType, elapsed));
+            }
+            for (SortType sortType : SortType.values()) {
+                Thread.sleep(10);
+                int[] given = array;
+                long start = System.currentTimeMillis();
+                sortDesc(sortType, array);
+                long elapsed = System.currentTimeMillis() - start;
+                System.out.println(String.format("DESC SortType : %s - elapsed : %s", sortType, elapsed));
             }
         } catch (Throwable th) {
             System.out.println(th.getMessage());
@@ -228,6 +236,29 @@ public class SortUtilsTest {
                 break;
             case QUICK:
                 SortUtils.quickSortAsc(array);
+                break;
+        }
+    }
+
+    private void sortDesc(SortType sortType, int[] array) {
+        switch (sortType) {
+            case BUBBLE:
+                SortUtils.bubbleSortDesc(array);
+                break;
+            case SELECTION:
+                SortUtils.selectionSortDesc(array);
+                break;
+            case INSERTION:
+                SortUtils.insertionSortDesc(array);
+                break;
+            case SHELL:
+                SortUtils.shellSortDesc(array);
+                break;
+            case MERGE:
+                SortUtils.mergeSortDesc(array);
+                break;
+            case QUICK:
+                SortUtils.quickSortDesc(array);
                 break;
         }
     }
