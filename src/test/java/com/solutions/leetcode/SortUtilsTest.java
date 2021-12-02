@@ -1,15 +1,13 @@
 package com.solutions.leetcode;
 
+import com.solutions.leetcode.customs.CustomQueue;
+import com.solutions.leetcode.customs.CustomStack;
 import com.solutions.leetcode.enums.SortType;
 import com.solutions.leetcode.utils.SortUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class SortUtilsTest {
 
@@ -272,5 +270,37 @@ public class SortUtilsTest {
             array[i++] = number;
         }
         return array;
+    }
+
+    @Test
+    public void deneme() {
+        System.out.println("** QUEUE STARTS **");
+        var node = new CustomQueue<Integer>();
+        node.offer(1);
+        node.offer(2);
+        node.offer(3);
+        node.offer(4);
+        node.offer(5);
+
+        int index = 1;
+        while (!node.isEmpty()) {
+            var val = node.poll();
+            System.out.println("index " + index + " queue value : " + val);
+            index++;
+        }
+
+        System.out.println("** STACK STARTS **");
+        var stack = new CustomStack<Integer>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
+        stack.push(5);
+        index = 1;
+        while (!stack.isEmpty()) {
+            var val = stack.poll();
+            System.out.println("index " + index + " stack value : " + val);
+            index++;
+        }
     }
 }
