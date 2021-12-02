@@ -332,4 +332,43 @@ public class BinTrieTest {
         String result = trie.search("40110435300000");
         Assertions.assertNull(result);
     }
+    @Test
+    public void test_search_3() {
+        String expected1 = "card1";
+        String expected2 = "card2";
+        BinTrie trie = new BinTrie();
+        trie.insert("4019", "4500", expected1);
+        trie.insert("4521", "4934", expected2);
+
+        var node = trie.getTrie();
+        Assertions.assertNotNull(node);
+
+        List<String> givenExistsListCard1 = List.of("401900000000", "421900000000", "45009999999999", "42000000000001");
+        for (String given : givenExistsListCard1) {
+            String result = trie.search(given);
+            System.out.println("given : " + given + " - result : " + result);
+            Assertions.assertEquals(expected1, result);
+        }
+
+        List<String> givenExistsListCard2 = List.of("4521000000000", "4521967967867867", "49349999999999", "49339999999999");
+        for (String given : givenExistsListCard2) {
+            String result = trie.search(given);
+            System.out.println("given : " + given + " - result : " + result);
+            Assertions.assertEquals(expected2, result);
+        }
+
+        List<String> givenNotExistsCard1ButNull = List.of( "734000000001", "734999999999999", "301899999999999999","401899999999999999");
+        for (String given : givenNotExistsCard1ButNull) {
+            String result = trie.search(given);
+            System.out.println("given : " + given + " - result : " + result);
+            Assertions.assertNull(result);
+        }
+
+        List<String> givenNotExistsCard2ButNull = List.of("4520000000000","734000000001", "734999999999999", "49350000000000");
+        for (String given : givenNotExistsCard2ButNull) {
+            String result = trie.search(given);
+            System.out.println("given : " + given + " - result : " + result);
+            Assertions.assertNull(result);
+        }
+    }
 }
