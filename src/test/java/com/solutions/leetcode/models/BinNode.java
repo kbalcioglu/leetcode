@@ -1,16 +1,16 @@
 package com.solutions.leetcode.models;
 
-public class BINNode {
+public class BinNode {
     private int value;
     private String cardType;
-    private BINNode[] children;
+    private BinNode[] children;
 
     private boolean isAllFromHere;
     private boolean isLeaf;
 
-    public BINNode(int value) {
+    public BinNode(int value) {
         this.value = value;
-        this.children = new BINNode[BinConstants.NODE_COUNT];
+        this.children = new BinNode[BinConstants.NODE_COUNT];
     }
 
     public int getValue() {
@@ -21,10 +21,10 @@ public class BINNode {
         return cardType;
     }
 
-    public BINNode[] getChildren() {
+    public BinNode[] getChildren() {
         return children;
     }
-    public BINNode getChild(int index) {
+    public BinNode getChild(int index) {
         return children[index];
     }
     public boolean isAllFromHere() {
@@ -39,7 +39,7 @@ public class BINNode {
         this.cardType = cardType;
     }
 
-    public void setChild(BINNode child,int index) {
+    public void setChild(BinNode child, int index) {
         this.children[index] = child;
     }
 

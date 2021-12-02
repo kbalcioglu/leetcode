@@ -1,6 +1,6 @@
 package com.solutions.leetcode.utils;
 
-import com.solutions.leetcode.models.BINNode;
+import com.solutions.leetcode.models.BinNode;
 import com.solutions.leetcode.models.BinConstants;
 import com.solutions.leetcode.models.BinGap;
 
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BinTrie {
-    private final BINNode root;
+    private final BinNode root;
 
     public BinTrie() {
-        this.root = new BINNode(BinConstants.START_CHAR);
+        this.root = new BinNode(BinConstants.START_CHAR);
     }
 
     public void insert(String start, String end, String cardType) {
@@ -25,14 +25,14 @@ public class BinTrie {
     }
 
     private void insert(BinGap gap, String cardType) {
-        BINNode current = root;
+        BinNode current = root;
         for (int i = 0; i < gap.getSize(); i++) {
             int startIndex = gap.getStartIndexValue(i);
             int endIndex = gap.getEndIndexValue(i);
 
             if (startIndex == endIndex) {
                 if (current.getChild(startIndex) == null) {
-                    current.setChild(new BINNode(startIndex), startIndex);
+                    current.setChild(new BinNode(startIndex), startIndex);
                 }
                 current = current.getChild(startIndex);
                 if(i == gap.getSize()-1){
@@ -51,9 +51,9 @@ public class BinTrie {
         }
     }
 
-    private void add(BINNode node, int index, String cardType) {
+    private void add(BinNode node, int index, String cardType) {
         if (node.getChild(index) == null) {
-            node.setChild(new BINNode(index), index);
+            node.setChild(new BinNode(index), index);
         }
         node = node.getChild(index);
         node.setCardType(cardType);
@@ -61,7 +61,7 @@ public class BinTrie {
     }
 
     public String search(String binNumber) {
-        BINNode searchNode = root;
+        BinNode searchNode = root;
         for (int i = 0; i < binNumber.length(); i++) {
             var index = binNumber.charAt(i) - '0';
             if (searchNode.getChild(index) != null) {
@@ -135,7 +135,7 @@ public class BinTrie {
         System.out.println();
     }
 
-    public BINNode getTrie() {
+    public BinNode getTrie() {
         return root;
     }
 
