@@ -76,7 +76,7 @@ public class Trie {
             char c = key.charAt(i);
             int index = key.charAt(i) - this.getInitialChar();
             if (current.getChild(index) == null) {
-                current.setChild(new TrieNode(String.valueOf(c)), index);
+                current.setChild(new TrieNode(c), index);
             }
             current = current.getChild(index);
         }
@@ -114,7 +114,7 @@ public class Trie {
         TrieNode current = root;
         while (numberOfChildren(current) == 1 && !current.isLeaf()) {
             current = current.getChild(lcpIndex);
-            sb.append(current.getKey());
+            sb.append(current.getCharacter());
         }
 
         return sb.toString();
@@ -193,7 +193,7 @@ public class Trie {
             if (child == null)
                 continue;
             StringBuilder sb = new StringBuilder(prefix);
-            collect(child, sb.append(child.getKey()), returnList);
+            collect(child, sb.append(child.getCharacter()), returnList);
         }
     }
 }

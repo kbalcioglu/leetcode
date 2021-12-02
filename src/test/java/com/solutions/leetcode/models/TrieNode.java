@@ -1,17 +1,17 @@
 package com.solutions.leetcode.models;
 
 public class TrieNode {
-    private String key;
+    private char character;
     private boolean isLeaf;
     private TrieNode[] children;
 
-    public TrieNode(String key) {
-        this.key = key;
+    public TrieNode(char character) {
+        this.character = character;
         this.children = new TrieNode[TrieConstants.ALPHABET_SIZE];
     }
 
-    public String getKey() {
-        return key;
+    public char getCharacter() {
+        return character;
     }
 
     public boolean isLeaf() {
