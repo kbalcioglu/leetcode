@@ -81,6 +81,7 @@ public class Trie {
             current = current.getChild(index);
         }
         current.setLeaf();
+
     }
 
     /**
@@ -113,7 +114,7 @@ public class Trie {
         TrieNode current = root;
         while (numberOfChildren(current) == 1 && !current.isLeaf()) {
             current = current.getChild(lcpIndex);
-            sb.append(current.getCharacter());
+            sb.append(current.getKey());
         }
 
         return sb.toString();
@@ -192,7 +193,7 @@ public class Trie {
             if (child == null)
                 continue;
             StringBuilder sb = new StringBuilder(prefix);
-            collect(child, sb.append(child.getCharacter()), returnList);
+            collect(child, sb.append(child.getKey()), returnList);
         }
     }
 }
