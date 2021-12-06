@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+//https://leetcode.com/problems/longest-substring-without-repeating-characters/
 public class LongestSubstringWithoutRepeatingCharactersTest {
     @Test
     public void test_1() {
@@ -37,29 +38,34 @@ public class LongestSubstringWithoutRepeatingCharactersTest {
     }
 
     public int lengthOfLongestSubstring(String s) {
-        Set<String> visited = new HashSet<>();
-        int result = 0;
-        result = dfs(s, visited, result);
-        return result;
-    }
-
-    private int dfs(String s, Set<String> visited, int max) {
-        return max;
-    }
-    public int dfs(int dp[][], String s, int i, int j) {
-        if (i > j) {
+        if (s == null || s.length() == 0)
             return 0;
-        } else if (i == j) {
+        if(s.length() == 1)
             return 1;
-        } else if (dp[i][j] != 0) {
-            return dp[i][j];
-        } else if (s.charAt(i) == s.charAt(j)) {
-            int left = dfs(dp, s, i, j - 1);
-            int right = dfs(dp, s, i + 1, j);
-            dp[i][j] = Integer.max(left, right);
-        } else {
-            dp[i][j] = dfs(dp, s, i + 1, j - 1) + 11;
+        Map<Character, Integer> chars = new HashMap<>();
+        int maxLength = 1;
+        int i = 0;
+        int j = 1;
+        chars.put(s.charAt(i),i);
+        while (i < s.length()
+                && j < s.length()
+                && i <= j
+                && (s.length() - i > maxLength)) {
+            char c = s.charAt(j);
+
+            if (!chars.containsKey(c)) {
+                chars.put(c, j);
+                j++;
+            } else {
+                i = chars.get(c) + 1;
+                j = i + 1;
+                chars = new HashMap<>();
+                chars.put(s.charAt(i),i);
+            }
+            maxLength = Math.max(maxLength, s.substring(i, j).length());
         }
-        return dp[i][j];
+
+
+        return maxLength;
     }
 }
