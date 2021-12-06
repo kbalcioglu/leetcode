@@ -4,7 +4,7 @@ import com.solutions.leetcode.models.ListNode;
 
 import java.util.List;
 
-public class ListNodeUtils {
+public final class ListNodeUtils {
 
     public static boolean checkEqualsListNode(ListNode expected, ListNode result) {
         if (expected == null && result == null)
@@ -48,19 +48,21 @@ public class ListNodeUtils {
         return head;
     }
 
-    public static void outputListNode(ListNode head) {
-        ListNodeUtils.outputListNode(head, null);
+    public static String outputListNode(ListNode head) {
+        return ListNodeUtils.outputListNode(head, null);
     }
 
-    public static void outputListNode(ListNode head, String title) {
+    public static String outputListNode(ListNode head, String title) {
+        StringBuilder sb = new StringBuilder();
         if (title != null && title.trim().length() > 0)
             System.out.println(title + " : ");
         while (head != null) {
-            System.out.print(head.val);
-            System.out.print(" --> ");
+            sb.append(head.val);
+            sb.append(" --> ");
             head = head.next;
         }
-        System.out.println("null");
+        sb.append("null");
+        return sb.toString();
     }
 
     public static ListNode reverseListNode(ListNode head) {
@@ -132,10 +134,9 @@ public class ListNodeUtils {
         return node;
     }*/
 
-    public ListNode push(ListNode head, int new_data) {
+    public static ListNode push(ListNode head, int new_data) {
         ListNode new_node = new ListNode(new_data);
         new_node.next = head;
-        head = new_node;
-        return head;
+        return new_node;
     }
 }
