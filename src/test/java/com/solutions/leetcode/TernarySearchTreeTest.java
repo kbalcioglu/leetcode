@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TernarySearchTreeTest {
-    @Test
+    /*@Test
     public void test_1(){
         TernarySearchTree tree = new TernarySearchTree();
         tree.put("car",10);
@@ -20,14 +20,6 @@ public class TernarySearchTreeTest {
         Assertions.assertEquals(5,tree.get("bus"));
         Assertions.assertEquals(10,tree.get("car"));
         Assertions.assertNull(tree.get("carr"));
-    }
+    }*/
 
-    @Test
-    public void test_string_hash(){
-        String s1 = "abb";
-        String s2 = "aac";
-
-        Assertions.assertNotEquals(s1,s2);
-        Assertions.assertNotEquals(s1.hashCode(),s2.hashCode());
-    }
 }

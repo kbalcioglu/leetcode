@@ -52,14 +52,4 @@ public class StringOperationsTest {
         String result = StringOperations.longestRepeatedSubstring(text);
         Assertions.assertEquals(expected, result);
     }
-
-
-    @Test
-    public void test_longest_repeated_substring_2() {
-        String text = "";
-        int expected = 3;
-        int result = StringOperations.longestSubstringWithoutRepeat(text);
-        System.out.println(result);
-        Assertions.assertEquals(expected, result);
-    }
 }
