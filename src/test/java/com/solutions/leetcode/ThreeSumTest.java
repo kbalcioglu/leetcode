@@ -69,42 +69,4 @@ public class ThreeSumTest {
         }
         return result;
     }
-/*
-    public void deneme(int[] nums) {
-        List<List<Integer>> returnList = new ArrayList<>();
-        int k = 3;
-        int n = nums.length;
-        int[] binary = new int[(int) Math.pow(2, n)];
-        for (int i = 0; i < Math.pow(2, n); i++) {
-            int b = 1;
-            binary[i] = 0;
-            int num = i, count = 0;
-            while (num > 0) {
-                if (num % 2 == 1)
-                    count++;
-                binary[i] += (num % 2) * b;
-                num /= 2;
-                b = b * 10;
-            }
-            if (count == k) {
-                Set<Integer> subset = new HashSet<>();
-                int sum = 0;
-                for (int j = 0; j < n; j++) {
-                    if (binary[i] % 10 == 1 && subset.contains(nums[j])) {
-                        binary[i] /= 10;
-                        break;
-                    }
-                    if (binary[i] % 10 == 1) {
-                        sum += nums[j];
-                    }
-                    binary[i] /= 10;
-                }
-                if(sum == 0 && subset.size() == k){
-                    lis
-                    returnList.add(subset);
-                }
-            }
-        }
-    }
-    */
 }
