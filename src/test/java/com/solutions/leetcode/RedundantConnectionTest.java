@@ -69,7 +69,7 @@ public class RedundantConnectionTest {
         return new int[]{-1, -1};
     }
 
-    public int find(int val, int[] parent) {
+    private int find(int val, int[] parent) {
         int parentVal = parent[val];
         if (parentVal == val)
             return parentVal;
