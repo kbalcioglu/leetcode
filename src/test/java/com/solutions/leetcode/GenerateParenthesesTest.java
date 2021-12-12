@@ -12,7 +12,7 @@ public class GenerateParenthesesTest {
     public void test_1() {
         int given = 3;
         List<String> expectedList = List.of("()()()", "(()())", "((()))", "()(())", "(())()");
-        var resultList = generateParenthesis(3);
+        var resultList = generateParenthesis(given);
         Assertions.assertEquals(expectedList.size(), resultList.size());
         for (String expected : expectedList) {
             Assertions.assertTrue(resultList.contains(expected));
@@ -37,7 +37,7 @@ public class GenerateParenthesesTest {
                 "()(())()",
                 "()()(())",
                 "()()()()");
-        var resultList = generateParenthesis(4);
+        var resultList = generateParenthesis(given);
         Assertions.assertEquals(expectedList.size(), resultList.size());
         for (String expected : expectedList) {
             Assertions.assertTrue(resultList.contains(expected));
