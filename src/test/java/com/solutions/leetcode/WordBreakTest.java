@@ -41,7 +41,8 @@ public class WordBreakTest {
         Assertions.assertTrue(result);
     }
 
-    public boolean wordBreak(String s, List<String> wordDict) {
+    // valid -> faster then %5
+    public boolean wordBreak2(String s, List<String> wordDict) {
         LinkedList<String> queue = new LinkedList<>();
         queue.offer(s);
         Set<String> offered = new HashSet<>();
@@ -80,5 +81,46 @@ public class WordBreakTest {
             }
         }
         return result;
+    }
+
+    // valid -> faster then %99
+    public boolean wordBreak(String s, List<String> wordDict) {
+
+        TrieNode root = new TrieNode();
+        for(var word : wordDict){
+            root = insert(root, word,0);
+        }
+        int[] dp = new int[s.length()+1];
+        dp[0] = 1;
+
+        for( int i = 0 ; i < dp.length; i++){
+            if(dp[i]!=1) continue;
+            TrieNode temp = root;
+            int j = i;
+
+            while( j < s.length() && temp.next[s.charAt(j)- 'a' ] !=null ){
+                temp = temp.next[s.charAt(j)- 'a' ] ;
+                j++;
+                if(temp.isWord){
+                    dp[j] = 1;
+                    if(j== s.length()) return true;
+                }
+            }
+        }
+        return false;
+    }
+    TrieNode insert(TrieNode node, String word, int d){
+        if(node == null) node = new TrieNode();
+        if( d == word.length()){
+            node.isWord = true;
+            return node;
+        }
+        char ch = word.charAt(d);
+        node.next[ch -'a'] = insert(node.next[ch - 'a'], word, d+1);
+        return node;
+    }
+    static class TrieNode{
+        boolean isWord;
+        TrieNode[] next = new TrieNode[26];
     }
 }
