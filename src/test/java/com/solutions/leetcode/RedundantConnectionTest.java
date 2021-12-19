@@ -57,7 +57,7 @@ public class RedundantConnectionTest {
 
         for (int[] edge : edges) {
             int x = edge[0], y = edge[1];
-            int parentX = find(x, parent), parentY = find(y, parent);
+            int  parentX = find(x, parent), parentY = find(y, parent);
             if (parentX == parentY)
                 return edge;
             else {
