@@ -38,15 +38,17 @@ public class DecodeWaysTest {
         int result = numDecodings(s);
         Assertions.assertEquals(expected, result);
     }
+
     public int numDecodings(String s) {
         if (s == null || s.length() == 0 || s.charAt(0) == '0')
             return 0;
-        int[] dp = new int[s.length() + 1];
+        int n = s.length();
+        int[] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
 
         for (int i = 2; i <= s.length(); i++) {
-            int j = i-1;
+            int j = i - 1;
             if (s.charAt(j) == '0') {
                 if ((s.charAt(j - 1) - '0') > 2 || s.charAt(j - 1) == '0') // can not be 30 or 00 invalid encode
                     return 0;
@@ -62,6 +64,29 @@ public class DecodeWaysTest {
             else
                 dp[i] = dp[i - 1] + dp[i - 2];
         }
-        return dp[s.length() ];
+        return dp[n];
+    }
+    public int numDecodings2(String s) {
+        if (s == null || s.length() == 0 || s.charAt(0) == '0')
+            return 0;
+        int n = s.length();
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+
+        for (int i = 1; i < s.length(); i++) {
+            int current = s.charAt(i) - '0';
+            int prev = s.charAt(i - 1) - '0';
+            int concat = (prev * 10) + current;
+
+            if (1 <= current && current <= 9) {
+                dp[i + 1] = dp[i];
+            }
+
+            if (10 <= concat && concat <= 26) {
+                dp[i + 1] += dp[i - 1];
+            }
+        }
+        return dp[n];
     }
 }
