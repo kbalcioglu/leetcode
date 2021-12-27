@@ -13,9 +13,10 @@ public class MinimumPathSumTest {
         int result = minPathSum(grid);
         Assertions.assertEquals(expected, result);
     }
+
     @Test
     public void test_2() {
-        int[][] grid = {{1,2,3}, {4,5,6}};
+        int[][] grid = {{1, 2, 3}, {4, 5, 6}};
         int expected = 12;
         int result = minPathSum(grid);
         Assertions.assertEquals(expected, result);
