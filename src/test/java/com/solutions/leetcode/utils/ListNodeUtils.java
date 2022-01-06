@@ -124,15 +124,21 @@ public final class ListNodeUtils {
         return head;
     }
 
-    /*public static ListNode insertAfter(ListNode node, int new_data) {
-        if (node == null) {
-            return node;
+    public static ListNode insertAfter(ListNode head, int new_data, int val) {
+        if (head == null) {
+            return new ListNode(new_data);
         }
         ListNode new_node = new ListNode(new_data);
+        ListNode node = head;
+        while (node != null){
+            if(node.val == val)
+                break;
+            node = node.next;
+        }
         new_node.next = node.next;
         node.next = new_node;
         return node;
-    }*/
+    }
 
     public static ListNode push(ListNode head, int new_data) {
         ListNode new_node = new ListNode(new_data);

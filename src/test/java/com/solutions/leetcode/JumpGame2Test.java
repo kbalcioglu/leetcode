@@ -44,102 +44,19 @@ public class JumpGame2Test {
     }
 
     public int jump(int[] nums) {
-        return iterative(nums);
-    }
-
-    private int iterative2(int[] nums) {
-        int maxReach = 0;
-        int currentReach = 0;
-        int jumps = 0;
-        for (int i = 0; i < nums.length - 1; i++) {
-            maxReach = Math.max(maxReach, i + nums[i]);
-            if (maxReach == nums.length - 1) {
-                jumps++;
-                break;
-            }
-            if (i == currentReach) {
-                jumps++;
-                currentReach = maxReach;
-            }
-            if (currentReach == nums.length)
-                break;
-        }
-        return jumps;
-    }
-
-    private int iterative(int[] nums) {
         int count = 0;
-        int i = 0;
-        int j = 0;
-        while (j < nums.length - 1) {
-            int t = j;
-            while (i <= j) {
-                int v = i + nums[i];
-                if (v > t)
-                    t = v;
-                i++;
+        int l = 0;
+        int r = 0;
+        while(r<nums.length-1)
+        {
+            int farthest = 0;
+            for(int i = l; i < r+1; i++){
+                farthest = Math.max(farthest, i + nums[i]);
             }
-            j = t;
+            l = r+1;
+            r = farthest;
             count++;
         }
         return count;
-    }
-
-    private int bfs(int[] nums) {
-        LinkedList<Element> queue = new LinkedList<>();
-        queue.offer(new Element(0, nums[0]));
-        int lastIndex = nums.length - 1;
-        Set<Element> offered = new HashSet<>();
-        while (!queue.isEmpty()) {
-            Element element = queue.poll();
-            if (element.index == lastIndex)
-                return element.moveCount;
-            int maxJump = element.value;
-            for (int i = 1; i <= maxJump; i++) {
-                Element newElement = element.move(new Element(element.index + i, nums[element.index + i]));
-                if (newElement.index == lastIndex)
-                    return newElement.moveCount;
-                if (offered.contains(newElement))
-                    continue;
-                offered.add(newElement);
-                queue.offer(newElement);
-            }
-        }
-        return -1;
-    }
-
-    static class Element {
-        int index;
-        int value;
-        int moveCount;
-
-        public Element(int index, int value) {
-            this.index = index;
-            this.value = value;
-            this.moveCount = 0;
-        }
-
-        private Element(int index, int value, int moveCount) {
-            this.index = index;
-            this.value = value;
-            this.moveCount = moveCount;
-        }
-
-        public Element move(Element e) {
-            return new Element(e.index, e.value, this.moveCount + 1);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Element e = (Element) o;
-            return index == e.index && value == e.value && moveCount == e.moveCount;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(index, value, moveCount);
-        }
     }
 }
