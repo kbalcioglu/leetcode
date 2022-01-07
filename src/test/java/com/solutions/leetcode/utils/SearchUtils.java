@@ -7,12 +7,12 @@ public class SearchUtils {
     public static int binarySearch(int[] arr, int x) {
         int l = 0;
         int r = arr.length - 1;
-        if (arr[l] == x)
+        /*if (arr[l] == x)
             return l;
         l++;
         if (arr[r] == x)
             return r;
-        r--;
+        r--;*/
         while (l < r) {
             int m = (l + r) / 2;
             if (arr[m] == x)
