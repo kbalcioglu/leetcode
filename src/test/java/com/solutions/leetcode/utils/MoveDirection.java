@@ -2,7 +2,7 @@ package com.solutions.leetcode.utils;
 
 import java.util.*;
 
-public enum MoveDirection {
+ public enum MoveDirection {
     NONE("NONE"),
     RIGHT("RIGHT"),
     LEFT("LEFT"),
