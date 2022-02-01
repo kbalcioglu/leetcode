@@ -89,7 +89,7 @@ public final class ListNodeUtils {
         return count;
     }
 
-    public static ListNode getMiddleNode(ListNode head) {
+    /*public static ListNode getMiddleNode(ListNode head) {
         if (head == null)
             return head;
         int count = ListNodeUtils.countListNode(head);
@@ -100,6 +100,16 @@ public final class ListNodeUtils {
             index++;
         }
         return pointer;
+    }*/
+
+    public static ListNode getMiddleNode(ListNode head) {
+        ListNode slow = head, fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 
     public static ListNode appendValue(ListNode head, int new_data) {
@@ -130,8 +140,8 @@ public final class ListNodeUtils {
         }
         ListNode new_node = new ListNode(new_data);
         ListNode node = head;
-        while (node != null){
-            if(node.val == val)
+        while (node != null) {
+            if (node.val == val)
                 break;
             node = node.next;
         }
@@ -144,5 +154,48 @@ public final class ListNodeUtils {
         ListNode new_node = new ListNode(new_data);
         new_node.next = head;
         return new_node;
+    }
+
+    public static ListNode mergeSort(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        int count = ListNodeUtils.countListNode(head);
+        ListNode left = head;
+        int index = 1;
+        while (index < count/2){
+            left = left.next;
+            index++;
+        }
+        ListNode right = left.next;
+        left.next = null;
+        left = head;
+
+        left = mergeSort(left);
+        right = mergeSort(right);
+        return merge(left, right);
+
+    }
+
+    private static ListNode merge(ListNode node1, ListNode node2) {
+        ListNode result = new ListNode(Integer.MIN_VALUE);
+        ListNode temp = result;
+        while (node1 != null && node2 != null){
+            if(node1.val < node2.val){
+                temp.next = node1;
+                node1 = node1.next;
+            }else{
+                temp.next = node2;
+                node2 = node2.next;
+            }
+            temp = temp.next;
+        }
+        if(node1 != null){
+            temp.next = node1;
+        }
+        if(node2 != null){
+            temp.next = node2;
+        }
+        return result.next;
     }
 }

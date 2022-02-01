@@ -5,12 +5,32 @@ import com.solutions.leetcode.utils.BSTUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 public class ValidateBSTTest {
     @Test
     public void test_1() {
-        BinaryTreeNode root = new BinaryTreeNode(2147483647);
+       /* BinaryTreeNode root = new BinaryTreeNode(2147483647);
         boolean result = BSTUtils.isValidBST(root);
-        Assertions.assertTrue(result);
+        Assertions.assertTrue(result);*/
+        double d = 100.0000;
+        int n = Integer.MAX_VALUE;
+        double res = Math.pow(d, n);
+        double res2 = power(d, n);
+        System.out.println(res);
+        System.out.println(res2);
+        //Assertions.assertEquals(res,res2);
+    }
+
+    private double power(double x, int n) {
+        if (n == 0) return 1;
+
+        double result = power(x, (n / 2));
+        result = result * result;
+        if (n % 2 == 1)
+            result = result * x;
+        return result;
     }
 
     @Test
