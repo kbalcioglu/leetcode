@@ -47,56 +47,21 @@ public class LongestPalindromicSubstringTest {
         long end = System.currentTimeMillis();
         System.out.println(end - start);
         System.out.println(result);
+    }
 
-        long start2 = System.currentTimeMillis();
-        String result2 = this.longestPalindrome2(s);
-        long end2 = System.currentTimeMillis();
-        System.out.println(end2 - start2);
-        System.out.println(result2);
+    @Test
+    public void test_s6() {
+        String s = "aab";
+        List<String> expected = List.of("a", "a", "b");
+        List<String> result = this.palindromeList(s);
+        for (String p : result) {
+            System.out.println(p);
+        }
     }
 
     private void assertion(List<String> expected, String result) {
         Assertions.assertEquals(expected.get(0).length(), result.length());
         Assertions.assertEquals(true, expected.contains(result));
-    }
-
-    private boolean isPalindrome(String str) {
-        StringBuilder sb = new StringBuilder(str);
-        sb.reverse();
-        String rev = sb.toString();
-        return rev.equals(str);
-    }
-
-    public String longestPalindrome(String s) {
-        if (s == null || s.length() == 0)
-            return "";
-        else if (s.length() == 1)
-            return s;
-        else if (isPalindrome(s)) {
-            return s;
-        } else if (s.length() == 2) {
-            return s.substring(0, 1);
-        }
-        int n = s.length();
-        int len = n;
-
-        String result = s.substring(0, 1);
-
-        for (int i = 0; i < n; i++) {
-            Set<String> tested = new HashSet<>();
-            for (int j = 0; j <= i; j++) {
-                String subStr = s.substring(j, j + len);
-                if (!tested.contains(subStr)) {
-                    tested.add(subStr);
-                    if (this.isPalindrome(subStr)) {
-                        return subStr;
-                    }
-                }
-
-            }
-            len--;
-        }
-        return result;
     }
 
     public String expand(String str, int low, int high) {
@@ -108,14 +73,12 @@ public class LongestPalindromicSubstringTest {
             low--;
             high++;
         }
-
-        // return palindromic substring
         return str.substring(low + 1, high);
     }
 
     // Function to find the longest palindromic substring in `O(n²)` time
     // and `O(1)` space
-    public String longestPalindrome2(String str) {
+    public String longestPalindrome(String str) {
         int len = str.length();
         String max_str = "";
         String curr_str;
@@ -157,6 +120,23 @@ public class LongestPalindromicSubstringTest {
         }
 
         return max_str;
+    }
+
+    public List<String> palindromeList(String str) {
+        List<String> result = new ArrayList<>();
+        int len = str.length();
+        String curr_str;
+
+        for (int i = 0; i < len; i++) {
+            curr_str = expand(str, i, i);
+            if (curr_str.length() > 0)
+                result.add(curr_str);
+            curr_str = expand(str, i, i + 1);
+            if (curr_str.length() > 0)
+                result.add(curr_str);
+        }
+
+        return result;
     }
 
 }
