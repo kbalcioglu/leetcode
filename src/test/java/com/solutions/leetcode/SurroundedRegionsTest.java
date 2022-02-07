@@ -1,5 +1,6 @@
 package com.solutions.leetcode;
 
+import com.solutions.leetcode.enums.DirectionType;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -96,6 +97,7 @@ public class SurroundedRegionsTest {
 
         board[p.getRow()][p.getCol()] = 'K';
         list.add(p);
+
         for (int[] direction : directions) {
             Position newPosition = p.move(direction);
             dfs(board, newPosition, list);
@@ -122,7 +124,9 @@ public class SurroundedRegionsTest {
         public Position move(int[] direction) {
             return new Position(this.row + direction[0], this.col + direction[1]);
         }
-
+        public Position move(DirectionType direction) {
+            return new Position(this.row + direction.getValue()[0], this.col + direction.getValue()[1]);
+        }
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;

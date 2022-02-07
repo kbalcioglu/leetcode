@@ -1,5 +1,7 @@
 package com.solutions.leetcode.utils;
 
+import com.solutions.leetcode.enums.DirectionType;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -10,6 +12,7 @@ public class StringUtils {
     }
 
     public void sortIntArrayLexicographically(Integer[] nums,boolean desc) {
+
         Arrays.sort(nums, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
